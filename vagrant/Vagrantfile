@@ -1,0 +1,39 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+
+Vagrant.configure("2") do |config|
+  config.vm.provider :virtualbox do |vb|
+    config.vm.box = "precise64"
+    config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
+    vb.vm.network :private_network, ip: "172.16.0.1"
+    vb.customize [
+      'modifyvm', :id,
+      '--name', 'mtlpy.localdom',
+      '--memory', '613'
+    ]
+  end
+
+  config.vm.provider :aws do |aws, override|
+    config.vm.box = "dummy"
+    aws.access_key_id = "AKIAJNIS2HPNMQBF75DQ"
+    aws.secret_access_key = "pH6cAcr6amI9RqVCylLUQuWvArO1TSRN6+setHV+"
+    aws.keypair_name = "pierrepaul-rsa"
+
+    aws.ami = "ami-2d015744"
+    aws.instance_type = 't1.micro'
+
+    aws.user_data = File.read("user_data.txt")
+
+    aws.tags = {
+      'Project' => 'Demo MontrealPython',
+      'Name' => 'Demo mtlpy',
+    }
+    aws.security_groups = [
+      'SSH+HTTP',
+    ]
+    override.ssh.username = "ubuntu"
+    override.ssh.private_key_path = "~/.ssh/id_rsa"
+  end
+end
