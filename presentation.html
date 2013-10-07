@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Vagrant</title>
+    <title>Vagrant, Amazon, vagrant-aws</title>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow|PT+Mono' rel='stylesheet' type='text/css'>
     <!-- Styles -->
     
@@ -19,12 +19,10 @@
         <section class="slide">
             <div>
                 
-                    <header><h1>Vagrant</h1></header>
+                    <header><h1>Vagrant, Amazon, vagrant-aws</h1></header>
                 
                 
-                    <section class="slide-content"><h2>Salespitch</h2>
-<p>Vagrant is <em>buzzword</em> with complete integration with <em>buzzword</em> done by the greatest engineers on earth and even from the galaxy. You will increase your productivity from <em>at least</em> 1200%❄. Your employees will suddenly stop asking for raises and will show up at work on time. Join the crowd <em>buzzword</em> <em>buzzword</em> <em>-this does not make sense-</em> <em>buzzword</em> and never fear being left out again.</p>
-<p>❄ results may vary greatly</p></section>
+                    <section class="slide-content"><p><img alt="test" src="/cloud-999px.png" /></p></section>
                 
                 <div class="presenter_notes">
                     <section>
@@ -38,15 +36,13 @@
         <section class="slide">
             <div>
                 
-                    <header><h1>Plus sérieusement</h1></header>
+                    <header><h1>Vagrant, c'est quoi?</h1></header>
                 
                 
-                    <section class="slide-content"><p>Vagrant est :</p>
-<ul>
-<li>pour créer des machines virtuelles en local</li>
-<li>sur Windows, MacOs et Linux</li>
-<li>open-source (en bonne partie)</li>
-<li>en ruby (sans commentaires)</li>
+                    <section class="slide-content"><ul>
+<li>Virtualisation de machine, orienté vers les développeurs</li>
+<li>Fonctionne sous tous les OS</li>
+<li>Utilise VirtualBox, mais peut être changé pour du LXC ou des machines Amazon</li>
 </ul></section>
                 
                 <div class="presenter_notes">
@@ -65,8 +61,244 @@
                 
                 
                     <section class="slide-content"><ul>
-<li><a href="http://vagrantup.com">Vagrant</a></li>
+<li><a href="http://downloads.vagrantup.com/tags/v1.3.4">Vagrant</a></li>
 </ul></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Tour du propriétaire</h1></header>
+                
+                
+                    <section class="slide-content"><div class="highlight"><pre><span class="lineno">1</span> vagrant init
+<span class="lineno">2</span> vagrant box add precise64 http://files.vagrantup.com/precise64.box
+</pre></div>
+
+<p>Modifier le fichier Vagrantfile pour faire référence à la bonne "box"</p>
+<div class="highlight"><pre><span class="lineno">1</span> config.vm.box <span class="o">=</span> <span class="s2">&quot;precise64&quot;</span>
+</pre></div>
+
+<p>Pour démarrer la machine</p>
+<div class="highlight"><pre><span class="lineno">1</span> vagrant up
+<span class="lineno">2</span> vagrant status
+<span class="lineno">3</span> vagrant ssh
+</pre></div>
+
+<p>Note : le dossier courrant va être automatiquement mis dans le dossier /vagrant de la machine virtuelle.</p></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Demo</h1></header>
+                
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Provision</h1></header>
+                
+                
+                    <section class="slide-content"><p>Possible (et même recommandé) de configurer la machine en utilisant des système comme Ansible, Puppet, Chef ou même un script shell.
+<a href="http://docs.vagrantup.com/v2/cli/provision.html">Provision</a></p>
+<p>Si la machine est déjà en route et vous désirez mettre à jour la configuration :</p>
+<div class="highlight"><pre><span class="lineno">1</span> vagrant provision
+</pre></div>
+</section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Amazon</h1></header>
+                
+                
+                    <section class="slide-content"><h3><a href="http://aws.amazon.com/">AWS</a></h3>
+<ul>
+<li>Machine virtualisée (ou dédié, selon vos besoins) avec possibilité de couvrir différentes partie du monde</li>
+<li>Pour tous les budgets, selon vos besoins</li>
+<li>Gratuit la première année pour les instances t1.micro (1 VCPU, 613mo de RAM) roulant plusieurs saveurs de linux</li>
+<li>Après la première année, une t1.micro coûte 3.66$ par mois plus un paiement de 62$ par mois. On parle d'environ 110$ pour une année.</li>
+</ul>
+<p><a href="http://calculator.s3.amazonaws.com/calc5.html">La calculatrice</a> sera votre meilleur ami.</p></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Reserved whut?</h1></header>
+                
+                
+                    <section class="slide-content"><p>Les instances réservées vous permettent de faire des économies importantes si vous savez que vous aurez besoin de vos machines 24 heures sur 24, comme dans le cas d'un serveur web.</p>
+<p>Il s'agit d'un paiement annuel (si vous achetez d'Amazon) qui réduit votre prix par heure sur une machine, dans une région précise et dans une zone précise.</p>
+<p>Il y aussi un "marketplace" pour ceux qui désire revendre leur "reserved instance". Ce qui est utile si nos besoins ont soudainement changé.</p></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>AMI</h1></header>
+                
+                
+                    <section class="slide-content"><p>Un AMI est simplement un "snapshot" d'une machine. Cannonical et beaucoup d'autres offrent des images de leur système d'opération pré-installée et prête à l'utilisation.</p>
+<p>Vous pouvez faire votre propres AMI à partir de vos machines, mais vous devrez les mettre hors ligne pour le faire.</p></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>IAM</h1></header>
+                
+                
+                    <section class="slide-content"><p>Amazon est fan d'acronyme qui mélange tout le monde.</p>
+<p>Permet de gérer</p>
+<ul>
+<li>Les clefs d'accès pour les API</li>
+<li>Ajouter des utilisateurs</li>
+<li>Ajouter des groupes d'utilisateurs</li>
+</ul>
+<p>Cette section est nécessaire pour créer des clefs d'API qui vont permettre à Vagrant de créer les machines sur Amazon.</p></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>L'interface</h1></header>
+                
+                
+                    <section class="slide-content"><p>L'interface, en date d'aujourd'hui, a beaucoup de problèmes.</p>
+<p>Rien n'est facile d'accès, mais il est possible presque tout faire via l'interface web. Amazon est toujours en constante évolution vis-à-vis les interfaces de chacun de ses produits.</p></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Demo</h1></header>
+                
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>vagrant-aws</h1></header>
+                
+                
+                    <section class="slide-content"><p>Nous avons besoin du <a href="https://github.com/mitchellh/vagrant-aws">plugin vagrant-aws</a> pour pousser notre machine sur Amazon :</p>
+<div class="highlight"><pre><span class="lineno">1</span> vagrant plugin install vagrant-aws
+<span class="lineno">2</span> vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
+</pre></div>
+
+<p>Le plugin est fait par le créateur de Vagrant.</p></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Vagrantfile</h1></header>
+                
+                
+                    <section class="slide-content"><p>Le projet demo pour la présentation : <a href="https://github.com/PierrePaul/mtlpy-vagrant-aws">github</a> </p>
+<p>Pour utiliser vagrant-aws (le provider), nous devons ajouter quelques détails dans le <a href="https://github.com/PierrePaul/mtlpy-vagrant-aws/blob/master/vagrant/Vagrantfile">Vagrantfile</a>.</p>
+<div class="highlight"><pre><span class="lineno">1</span> aws.access_key_id
+<span class="lineno">2</span> aws.secret_access_key
+<span class="lineno">3</span> aws.keypair_name
+<span class="lineno">4</span> aws.ami
+<span class="lineno">5</span> aws.instance_type
+<span class="lineno">6</span> aws.security_groups
+<span class="lineno">7</span> override.ssh.username
+<span class="lineno">8</span> override.ssh.private_key_path
+</pre></div>
+</section>
                 
                 <div class="presenter_notes">
                     <section>
@@ -95,25 +327,12 @@
         <section class="slide">
             <div>
                 
-                    <header><h1>Amazon</h1></header>
+                    <header><h1>Notes</h1></header>
                 
                 
-                    <section class="slide-content"><p>what did I ever do to you</p></section>
-                
-                <div class="presenter_notes">
-                    <section>
-                    
-                    </section>
-                </div>
-            </div>
-        </section>
-     
-      <!-- slide source: vagrant-aws.md -->
-        <section class="slide">
-            <div>
-                
-                    <header><h1>vagrant-aws</h1></header>
-                
+                    <section class="slide-content"><p>Impossible d'avoir une machine qui roule de manière concurrente même si les providers sont différends. C'est une limitation qui devrait être levée dans une future version de Vagrant.</p>
+<p>Possible d'utiliser les variables d'environnements dans le Vagrantfile pour éviter de storer les clefs d'accès dans git ou hg.</p>
+<p>Possible de définir des tags sur les machines. Via l'interface web, le nom de la machine est associé au tag "Name".</p></section>
                 
                 <div class="presenter_notes">
                     <section>
