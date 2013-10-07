@@ -152,7 +152,13 @@ Rien n'est facile d'accès, mais il est possible presque tout faire via l'interf
 
 # Demo Amazon
 
+[aws.amazon.ca](http://aws.amazon.com/)
 
+---
+
+# Show me shiny things
+
+[play.google.com](https://play.google.com/store/apps/details?id=com.amazon.aws.console.mobile)
 
 ---
 
