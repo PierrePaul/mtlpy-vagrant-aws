@@ -2,11 +2,11 @@
 
 ![test](/cloud-999px.png)
 
-*obligatory cloud image*
-
 ---
 
 # Vagrant, c'est quoi?
+
+[https://github.com/PierrePaul/mtlpy-vagrant-aws](https://github.com/PierrePaul/mtlpy-vagrant-aws)
 
 - Virtualisation de machine, orienté vers les développeurs
 - Fonctionne sous tous les OS
@@ -81,6 +81,12 @@ Par exemple :
 
 # Demo Vagrant
 
+
+---
+
+# Demo Vagrant
+
+Dossiers partagés
 
 ---
 
