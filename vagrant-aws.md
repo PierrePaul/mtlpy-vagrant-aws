@@ -2,6 +2,8 @@
 
 ![test](/cloud-999px.png)
 
+*obligatory cloud image*
+
 ---
 
 # Vagrant, c'est quoi?
@@ -41,7 +43,43 @@ Note : le dossier courrant va être automatiquement mis dans le dossier /vagrant
 
 ---
 
-# Demo
+# Multi-machines
+
+C'est possible de reproduire une topologie de serveur un peu plus complexe avec Vagrant.
+
+Par exemple, on peut avoir un serveur db et web sur deux machines virtualisées qui se parlent entre eux.
+
+    !ruby
+    Vagrant.configure("2") do |config|
+      config.vm.provision "shell", inline: "echo Hello"
+
+      config.vm.define "web" do |web|
+        web.vm.box = "apache"
+      end
+
+      config.vm.define "db" do |db|
+        db.vm.box = "mysql"
+      end
+    end
+
+[Documentation](http://docs.vagrantup.com/v2/multi-machine/index.html)
+
+---
+
+# Multi-machines partie 2
+
+Dans le cas des multi-machines, les commandes vagrant vont être légèrement différente.
+
+Par exemple :
+
+    !bash
+    vagrant up web
+    vagrant up db
+    vagrant status [web,db]
+
+---
+
+# Demo Vagrant
 
 
 ---
@@ -112,7 +150,8 @@ Rien n'est facile d'accès, mais il est possible presque tout faire via l'interf
 
 ---
 
-# Demo
+# Demo Amazon
+
 
 
 ---
@@ -148,7 +187,7 @@ Pour utiliser vagrant-aws (le provider), nous devons ajouter quelques détails d
 
 ---
 
-# Demo
+# Demo vagrant-aws
 
 ---
 

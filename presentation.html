@@ -22,7 +22,8 @@
                     <header><h1>Vagrant, Amazon, vagrant-aws</h1></header>
                 
                 
-                    <section class="slide-content"><p><img alt="test" src="/cloud-999px.png" /></p></section>
+                    <section class="slide-content"><p><img alt="test" src="/cloud-999px.png" /></p>
+<p><em>obligatory cloud image</em></p></section>
                 
                 <div class="presenter_notes">
                     <section>
@@ -85,6 +86,7 @@
 
 <p>Modifier le fichier Vagrantfile pour faire référence à la bonne "box"</p>
 <div class="highlight"><pre><span class="lineno">1</span> config.vm.box <span class="o">=</span> <span class="s2">&quot;precise64&quot;</span>
+<span class="lineno">2</span> config.vm.box_url <span class="o">=</span> <span class="s2">&quot;http://files.vagrantup.com/precise64.box&quot;</span>
 </pre></div>
 
 <p>Pour démarrer la machine</p>
@@ -94,6 +96,61 @@
 </pre></div>
 
 <p>Note : le dossier courrant va être automatiquement mis dans le dossier /vagrant de la machine virtuelle.</p></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Multi-machines</h1></header>
+                
+                
+                    <section class="slide-content"><p>C'est possible de reproduire une topologie de serveur un peu plus complexe avec Vagrant.</p>
+<p>Par exemple, on peut avoir un serveur db et web sur deux machines virtualisées qui se parlent entre eux.</p>
+<div class="highlight"><pre><span class="lineno"> 1</span> <span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<span class="lineno"> 2</span>   <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">inline</span><span class="p">:</span> <span class="s2">&quot;echo Hello&quot;</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span>   <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;web&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">web</span><span class="o">|</span>
+<span class="lineno"> 5</span>     <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;apache&quot;</span>
+<span class="lineno"> 6</span>   <span class="k">end</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span>   <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;db&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">db</span><span class="o">|</span>
+<span class="lineno"> 9</span>     <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;mysql&quot;</span>
+<span class="lineno">10</span>   <span class="k">end</span>
+<span class="lineno">11</span> <span class="k">end</span>
+</pre></div>
+
+<p><a href="http://docs.vagrantup.com/v2/multi-machine/index.html">Documentation</a></p></section>
+                
+                <div class="presenter_notes">
+                    <section>
+                    
+                    </section>
+                </div>
+            </div>
+        </section>
+     
+      <!-- slide source: vagrant-aws.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Multi-machines partie 2</h1></header>
+                
+                
+                    <section class="slide-content"><p>Dans le cas des multi-machines, les commandes vagrant vont être légèrement différente.</p>
+<p>Par exemple :</p>
+<div class="highlight"><pre><span class="lineno">1</span> vagrant up web
+<span class="lineno">2</span> vagrant up db
+<span class="lineno">3</span> vagrant status <span class="o">[</span>web,db<span class="o">]</span>
+</pre></div>
+</section>
                 
                 <div class="presenter_notes">
                     <section>
